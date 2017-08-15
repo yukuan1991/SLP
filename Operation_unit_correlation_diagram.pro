@@ -35,7 +35,11 @@ SOURCES += main.cc\
     OperationUnitModel.cc \
     OperationUnit/OperationUnitRelationAnalysis.cc \
     OperationUnit/OperationUnitRibbon.cc \
-    OperationUnit/RelationSetDialog.cc
+    OperationUnit/RelationSetDialog.cc \
+    item/abstractItem.cc \
+    item/processingZone.cc \
+    item/assemblyArea.cc \
+    item/transportArea.cc
 
 HEADERS  += OperationUnitRelationMain.h \
     OperationUnit/Ribbon.h \
@@ -45,7 +49,11 @@ HEADERS  += OperationUnitRelationMain.h \
     OperationUnitModel.h \
     OperationUnit/OperationUnitRelationAnalysis.h \
     OperationUnit/OperationUnitRibbon.h \
-    OperationUnit/RelationSetDialog.h
+    OperationUnit/RelationSetDialog.h \
+    item/abstractItem.h \
+    item/processingZone.h \
+    item/assemblyArea.h \
+    item/transportArea.h
 
 FORMS    += operationunitrelationmain.ui \
     OperationUnit/form.ui \
@@ -54,3 +62,5 @@ FORMS    += operationunitrelationmain.ui \
 
 LIBS += -lboost_filesystem
 LIBS += -lboost_system
+
+DISTFILES +=
