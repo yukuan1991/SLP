@@ -11,8 +11,7 @@ public:
     canvasView(ARGS && ...args) : QGraphicsView(std::forward<ARGS> (args)...) { init(); }
 
     ~canvasView() { qDebug() << "~canvasView()"; }
-public:
-    void setOperationUnitCount();
+
 private:
 
     void init();

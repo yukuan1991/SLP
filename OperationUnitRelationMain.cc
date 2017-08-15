@@ -21,13 +21,13 @@ OperationUnitRelationMain::~OperationUnitRelationMain()
 void OperationUnitRelationMain::initConn()
 {
     connect(ui->rib, &OperationUnitRibbon::fileNew, this, &OperationUnitRelationMain::newBuild);
-    connect(ui->rib, &OperationUnitRibbon::relationSetClicked, this, &OperationUnitRelationMain::relationSet);
+    connect(ui->rib, &OperationUnitRibbon::relationSetClicked,
+            this, &OperationUnitRelationMain::relationSet);
 }
 
 void OperationUnitRelationMain::newBuild()
 {
     auto w = createWindow();
-    w->setOperationUnitCount();
 }
 
 void OperationUnitRelationMain::relationSet()
@@ -36,24 +36,13 @@ void OperationUnitRelationMain::relationSet()
     dlg.exec();
 }
 
-not_null<OperationUnitRelationAnalysis *> OperationUnitRelationMain::createWindow()
+not_null<canvasView*> OperationUnitRelationMain::createWindow()
 {
-    auto analysis = std::make_unique<OperationUnitRelationAnalysis> ();
-    auto ptr_analysis= analysis.get();
-    analysis->setAttribute(Qt::WA_DeleteOnClose);
-    auto w = ui->mdiArea->addSubWindow (analysis.release());
+    auto canvas = std::make_unique<canvasView> ();
+    auto ptr_canvas = canvas.get();
+    canvas->setAttribute(Qt::WA_DeleteOnClose);
+    auto w = ui->mdiArea->addSubWindow (canvas.release());
 
     w->setWindowState(Qt::WindowMaximized);
-    return ptr_analysis;
+    return ptr_canvas;
 }
-
-//not_null<canvasView*> OperationUnitRelationMain::createWindow()
-//{
-//    auto canvas = std::make_unique<canvasView> ();
-//    auto ptr_canvas = canvas.get();
-//    canvas->setAttribute(Qt::WA_DeleteOnClose);
-//    auto w = ui->mdiArea->addSubWindow (canvas.release());
-
-//    w->setWindowState(Qt::WindowMaximized);
-//    return ptr_canvas;
-//}

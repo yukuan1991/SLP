@@ -23,8 +23,7 @@ private:
 private:
     void newBuild();
     void relationSet();
-//    not_null<canvasView*> createWindow();
-    not_null<OperationUnitRelationAnalysis*> createWindow();
+    not_null<canvasView*> createWindow();
 private:
     Ui::OperationUnitRelationMain *ui;
 };
