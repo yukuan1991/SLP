@@ -1,5 +1,8 @@
 ﻿#include "canvasView.h"
 #include <QInputDialog>
+#include <QGraphicsScene>
+#include "item/LineA.h"
+#include "item/assemblyArea.h"
 //#include "item/processingZone.h"
 //#include "item/assemblyArea.h"
 //#include "item/transportArea.h"

@@ -13,11 +13,14 @@ public:
 
     QPointF start () const noexcept { return start_; }
     QPointF stop () const noexcept { return stop_; }
+    QRectF verticalRect () const noexcept;
+    qreal angle () const noexcept;
+protected:
+    virtual qreal width () const noexcept = 0;
 private:
-    void resetStartX () noexcept;
-    void resetStopX () noexcept;
-    void resetStartY () noexcept;
-    void resetStopY () noexcept;
+    void resetStart () noexcept;
+    void resetStop () noexcept;
+
 private:
     QPointF start_ = {0, 0}, stop_ = {0, 0};
 };
