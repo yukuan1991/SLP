@@ -45,7 +45,12 @@ SOURCES += main.cc\
     item/officeArea.cc \
     item/stagingArea.cc \
     item/serviceArea.cc \
-    item/AbstractLine.cc
+    item/AbstractLine.cc \
+    item/LineA.cc \
+    item/LineO.cc \
+    item/LineE.cc \
+    item/LineI.cc \
+    item/LineX.cc
 
 HEADERS  += OperationUnitRelationMain.h \
     OperationUnit/Ribbon.h \
@@ -65,7 +70,12 @@ HEADERS  += OperationUnitRelationMain.h \
     item/officeArea.h \
     item/stagingArea.h \
     item/serviceArea.h \
-    item/AbstractLine.h
+    item/AbstractLine.h \
+    item/LineA.h \
+    item/LineO.h \
+    item/LineE.h \
+    item/LineI.h \
+    item/LineX.h
 
 FORMS    += operationunitrelationmain.ui \
     OperationUnit/form.ui \
