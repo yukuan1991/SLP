@@ -1,26 +1,24 @@
-﻿#include "item/LineA.h"
+﻿#include "LineX.h"
 #include <QPainter>
-#include <QDebug>
 
-
-
-LineA::LineA(AbstractItem *start, AbstractItem *stop)
-    :AbstractLine (start, stop)
+LineX::LineX(AbstractItem *start, AbstractItem *stop)
+    : AbstractLine (start, stop)
 {
 
 }
 
-qreal LineA::width() const noexcept
+qreal LineX::width() const noexcept
 {
-    return 25;
+    return 10;
 }
 
-void LineA::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void LineX::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
     const auto rect = verticalRect ();
-    painter->setPen (Qt::red);
+    painter->setPen (Qt::black);
+    painter->setPen (QPen(Qt::DashLine));
     painter->translate ((start () + stop ()) / 2);
     painter->rotate (- angle ());
 
@@ -30,15 +28,10 @@ void LineA::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
     const auto bottomLeft = rect.bottomLeft ();
     const auto bottomRight = rect.bottomRight ();
 
-    painter->drawLine (topLeft, topRight);
-
-    painter->drawLine ((2 * topLeft + bottomLeft) / 3, (2 * topRight + bottomRight) / 3);
-    painter->drawLine ((topLeft + 2 * bottomLeft) / 3, (topRight + 2 * bottomRight) / 3);
-
-    painter->drawLine (bottomLeft, bottomRight);
+    painter->drawLine ((topLeft + bottomLeft) / 2, (topRight + bottomRight) / 2);
 }
 
-QRectF LineA::boundingRect() const
+QRectF LineX::boundingRect() const
 {
     const auto rect = verticalRect ();
     const auto matrix = [angle = angle ()] () { QMatrix m; m.rotate (- angle); return m; } ();
