@@ -2,7 +2,7 @@
 #include <QPainter>
 
 serviceArea::serviceArea(QGraphicsItem *parent)
-    : abstractItem (parent)
+    : AbstractItem (parent)
 {
 
 }

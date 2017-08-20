@@ -2,7 +2,7 @@
 #include <QPainter>
 
 storageArea::storageArea(QGraphicsItem *parent)
-    : abstractItem (parent)
+    : AbstractItem (parent)
 {
 
 }

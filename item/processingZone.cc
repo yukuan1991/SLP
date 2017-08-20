@@ -2,14 +2,14 @@
 #include "QPainter"
 
 processingZone::processingZone(QGraphicsItem *parent)
-    : abstractItem (parent)
+    : AbstractItem (parent)
 {
 
 }
 
 void processingZone::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    abstractItem::paint(painter, option, widget);
+    AbstractItem::paint(painter, option, widget);
 
     painter->setBrush(Qt::green);
     const QRectF rect(0, 0, itemWidth, itemHeight);

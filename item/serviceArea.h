@@ -2,7 +2,7 @@
 #include "abstractItem.h"
 
 
-class serviceArea : public abstractItem
+class serviceArea : public AbstractItem
 {
 public:
     serviceArea(QGraphicsItem *parent = nullptr);

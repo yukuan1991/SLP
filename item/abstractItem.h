@@ -2,11 +2,11 @@
 #include <QGraphicsObject>
 
 
-class abstractItem : public QGraphicsObject
+class AbstractItem : public QGraphicsObject
 {
     Q_OBJECT
 public:
-    abstractItem(QGraphicsItem *parent = nullptr);
+    AbstractItem(QGraphicsItem *parent = nullptr);
 protected:
     QRectF boundingRect () const override;
     void paint (QPainter * painter, const QStyleOptionGraphicsItem * option,

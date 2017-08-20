@@ -2,7 +2,7 @@
 #include "item/abstractItem.h"
 
 
-class assemblyArea : public abstractItem
+class assemblyArea : public AbstractItem
 {
 public:
     assemblyArea(QGraphicsItem *parent = nullptr);

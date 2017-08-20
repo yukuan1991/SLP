@@ -2,7 +2,7 @@
 #include <QPainter>
 
 transportArea::transportArea(QGraphicsItem *parent)
-    : abstractItem (parent)
+    : AbstractItem (parent)
 {
 
 }

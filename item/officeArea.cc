@@ -2,7 +2,7 @@
 #include <QPainter>
 
 officeArea::officeArea(QGraphicsItem *parent)
-    : abstractItem (parent)
+    : AbstractItem (parent)
 {
 
 }

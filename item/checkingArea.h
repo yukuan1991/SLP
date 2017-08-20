@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "item/abstractItem.h"
 
-class checkingArea : public abstractItem
+class checkingArea : public AbstractItem
 {
 public:
     checkingArea(QGraphicsItem *parent = nullptr);

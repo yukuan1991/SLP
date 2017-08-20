@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "item/abstractItem.h"
 
-class transportArea : public abstractItem
+class transportArea : public AbstractItem
 {
 public:
     transportArea(QGraphicsItem* parent = nullptr);

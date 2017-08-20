@@ -2,7 +2,7 @@
 #include "item/abstractItem.h"
 
 
-class processingZone : public abstractItem
+class processingZone : public AbstractItem
 {
 public:
     processingZone(QGraphicsItem *parent = nullptr);

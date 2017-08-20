@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "item/abstractItem.h"
 
-class stagingArea : public abstractItem
+class stagingArea : public AbstractItem
 {
 public:
     stagingArea(QGraphicsItem *parent = nullptr);
