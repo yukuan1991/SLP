@@ -17,6 +17,7 @@ AbstractLine::AbstractLine(not_null<AbstractItem *> start, not_null<AbstractItem
     stop_ = stop->mapToScene (stop->sceneBoundingRect ().center ());
 
     setPos (0, 0);
+    setZValue (- 100);
 }
 
 void AbstractLine::resetStart() noexcept
