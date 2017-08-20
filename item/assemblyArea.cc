@@ -15,5 +15,4 @@ void assemblyArea::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     const QRectF rect(0, 0, itemWidth, itemHeight);
     painter->drawEllipse(rect);
 
-    update();
 }

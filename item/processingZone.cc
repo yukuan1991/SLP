@@ -15,5 +15,4 @@ void processingZone::paint(QPainter *painter, const QStyleOptionGraphicsItem *op
     const QRectF rect(0, 0, itemWidth, itemHeight);
     painter->drawEllipse(rect);
 
-    update();
 }
