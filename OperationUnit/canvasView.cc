@@ -3,6 +3,10 @@
 #include <QGraphicsScene>
 #include "item/LineA.h"
 #include "item/assemblyArea.h"
+#include "item/LineE.h"
+#include "item/LineI.h"
+#include "item/LineO.h"
+#include "item/LineX.h"
 //#include "item/processingZone.h"
 //#include "item/assemblyArea.h"
 //#include "item/transportArea.h"
@@ -35,6 +39,7 @@ void canvasView::init()
     scene ()->addItem (item2);
 
 
-    auto line = new LineA (item1, item2);
+    auto line = new LineX (item1, item2);
     scene ()->addItem (line);
+
 }
