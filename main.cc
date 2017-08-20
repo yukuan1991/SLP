@@ -7,6 +7,8 @@
 #include <QStandardItemModel>
 #include <OperationUnitDelegate.h>
 #include <OperationUnitModel.h>
+#include <QStyleFactory>
+#include <QStyle>
 
 
 void setStyle()
@@ -19,9 +21,9 @@ void setStyle()
     std::string qss;
     for(auto & it : rng)
     {
-        if(it.path().extension().string() == ".css")
+        if(it.path().extension().string () == ".css")
         {
-            auto res = file::read_all(it.path().string().data());
+            auto res = file::read_all (it.path().string().data());
             if(res)
             {
                 qss += res.value();
@@ -34,37 +36,14 @@ void setStyle()
 
 int main(int argc, char *argv[])
 {
+
     QApplication a(argc, argv);
+    const auto fusion = QStyleFactory::create ("fusion");
+    a.setStyle (fusion);
 
     setStyle();
     OperationUnitRelationMain w;
     w.show();
-
-//    auto tablewidget_ = new QTableView;
-//    auto model = new QStandardItemModel(10, 10);
-//    auto model = new OperationUnitModel;
-
-//    model->setItem(0, 1, new QStandardItem);
-//    model->item(0, 1)->setEditable(false);
-//    model->item(0, 1)->setBackground(Qt::gray);
-
-//    tablewidget_->setModel(model);
-//    auto delegate = new OperationUnitDelegate();
-
-//    tablewidget_->setItemDelegate(delegate);
-
-//    tablewidget_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-//    tablewidget_->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-
-//    for(int row = 0; row < 10; row++)
-//    {
-//        for(int col = 0; col < 10; col++)
-//        {
-//            QModelIndex index = model->index(row, col, QModelIndex());
-//            model->setData(index, QVariant());
-//        }
-//    }
-//    tablewidget_->show();
 
     return a.exec();
 }

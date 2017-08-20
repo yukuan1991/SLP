@@ -1,6 +1,7 @@
 ﻿#include "RelationSetDialog.h"
 #include "ui_relationsetdialog.h"
 #include "OperationUnitDelegate.h"
+#include <memory>
 #include "OperationUnitModel.h"
 
 RelationSetDialog::RelationSetDialog(QWidget *parent) :
@@ -30,8 +31,14 @@ void RelationSetDialog::setTable(int rows, int cols)
     {
         for(int j = 0; j < cols; j++)
         {
-            model->setItem(i, j, new QStandardItem);
+            auto item = std::make_unique<QStandardItem> ();
+            if (i >= rows - 2)
+            {
+                item->setBackground (QColor (230, 230, 230));
+            }
+            model->setItem(i, j, item.release ());
             model->item(i, j)->setTextAlignment(Qt::AlignCenter);
+
         }
     }
 
