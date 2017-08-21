@@ -33,13 +33,10 @@ void OperationUnitDelegate::setEditorData(QWidget *editor, const QModelIndex &in
     {
         QStringList list;
         list << "" << "A" << "E" << "I" << "O" << "U" << "X";
-        auto combo = dynamic_cast<QComboBox*>(editor);
+        auto combo = dynamic_cast<QComboBox*>(editor); assert (combo);
         combo->addItems(list);
-        if(combo)
-        {
-            qDebug() << "setCurrentText";
-            combo->setCurrentText(index.data().toString());
-        }
+
+        combo->setCurrentText(index.data().toString());
     }
 }
 
@@ -49,13 +46,8 @@ void OperationUnitDelegate::setModelData(QWidget *editor, QAbstractItemModel *mo
 
     if((header != "综合接近程度") or (header != "排序"))
     {
-        auto combo = dynamic_cast<QComboBox*>(editor);
-        if(combo)
-        {
-            model->setData(index, combo->currentText());
-            auto relativeIndex = model->index(index.column(), index.row());
-            model->setData(relativeIndex, combo->currentText());
-        }
+        auto combo = dynamic_cast<QComboBox*>(editor); assert (combo);
+        model->setData(index, combo->currentText());
     }
 }
 

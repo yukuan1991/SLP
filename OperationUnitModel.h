@@ -11,6 +11,7 @@ public:
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
     QVariant data (const QModelIndex & index, int role = Qt::DisplayRole) const override;
     static QString findVericalHeader (const QStandardItemModel * model, const QModelIndex & index);
-
+private:
+    static QModelIndex mapIndex (const QModelIndex & index);
 };
 

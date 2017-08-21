@@ -13,8 +13,8 @@ AbstractLine::AbstractLine(not_null<AbstractItem *> start, not_null<AbstractItem
     connect (start, &QObject::destroyed, this, &QObject::deleteLater);
     connect (stop, &QObject::destroyed, this, &QObject::deleteLater);
 
-    start_ = start->mapToScene (start->sceneBoundingRect ().center ());
-    stop_ = stop->mapToScene (stop->sceneBoundingRect ().center ());
+    start_ = start->sceneBoundingRect ().center ();
+    stop_ = stop->sceneBoundingRect ().center ();
 
     setPos (0, 0);
     setZValue (- 100);
