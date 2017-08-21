@@ -4,6 +4,7 @@
 #include <memory>
 #include "OperationUnitModel.h"
 #include <QMessageBox>
+#include <base/lang/not_null.h>
 
 using std::make_unique;
 
@@ -119,22 +120,22 @@ void RelationSetDialog::buttonCancel()
 void RelationSetDialog::buttonModify()
 {
     /// 很不优雅 QMessageBox::question
-    auto ret = QMessageBox::question(this, "设置", "是否修改当前作业单位数？", "是", "否");
-    constexpr auto yes = 0;
-    constexpr auto no = 1;
-
-    if(ret == yes)
+    if (model_ != null)
     {
-        const auto text = ui->lineEdit->text();
-        bool isOk = false;
-        const auto num = text.toInt(&isOk);
-        if(isOk)
+        auto ret = QMessageBox::question(this, "设置", "是否修改当前作业单位数？", "是", "否");
+        constexpr auto yes = 0;
+        if(ret != yes)
         {
-            this->setTable(num + 2, num);
+            return;
         }
     }
-    else if(ret == no)
+
+    const auto text = ui->lineEdit->text();
+    bool isOk = false;
+    const auto num = text.toInt(&isOk);
+
+    if(isOk)
     {
-        return;
+        this->setTable(num + 2, num);
     }
 }
