@@ -5,6 +5,7 @@
 #include "OperationUnitModel.h"
 #include <QMessageBox>
 #include "OperationUnit/OperationUnitNameDelegate.h"
+#include <QDebug>
 
 RelationSetDialog::RelationSetDialog(QWidget *parent) :
     QDialog(parent),
@@ -14,7 +15,6 @@ RelationSetDialog::RelationSetDialog(QWidget *parent) :
 
     ui->lineEdit->setValidator(new QIntValidator(0, 999, this));
     initConn();
-    setFixedSize(1000, 600);
 }
 
 RelationSetDialog::~RelationSetDialog()
@@ -96,8 +96,9 @@ void RelationSetDialog::setTable(int rows, int cols)
         for(int j = 0; j < 2; j++)
         {
             auto item = std::make_unique<QStandardItem> ();
-            model->setItem(i, j, item.release ());
-            model->item(i, j)->setTextAlignment(Qt::AlignCenter);        }
+            nameModel->setItem(i, j, item.release ());
+            nameModel->item(i, j)->setTextAlignment(Qt::AlignCenter);
+        }
     }
 
     nameDelegate_ = std::make_unique<OperationUnitNameDelegate> ();
