@@ -9,6 +9,7 @@ class RelationSetDialog;
 
 class OperationUnitDelegate;
 class OperationUnitModel;
+class OperationUnitNameDelegate;
 
 class RelationSetDialog : public QDialog
 {
@@ -18,6 +19,8 @@ public:
     explicit RelationSetDialog(QWidget *parent = 0);
     ~RelationSetDialog();
 
+    QVariant dump();
+    void load(const QVariant& data);
 private:
     void setTable(int rows, int cols);
     void initConn();
@@ -27,6 +30,7 @@ private:
 private:
     std::unique_ptr<OperationUnitDelegate> delegate_;
     std::unique_ptr<OperationUnitModel> model_;
+    std::unique_ptr<OperationUnitNameDelegate> nameDelegate_;
 private:
     Ui::RelationSetDialog *ui;
 };

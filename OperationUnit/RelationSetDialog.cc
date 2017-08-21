@@ -4,6 +4,7 @@
 #include <memory>
 #include "OperationUnitModel.h"
 #include <QMessageBox>
+#include "OperationUnit/OperationUnitNameDelegate.h"
 #include <base/lang/not_null.h>
 
 using std::make_unique;
@@ -90,12 +91,23 @@ void RelationSetDialog::setTable(int rows, int cols)
 
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
+    auto nameModel = std::make_unique<QStandardItemModel> (cols, 2, this);
+    nameModel->setHeaderData(0, Qt::Horizontal, "作业单位名称");
+    nameModel->setHeaderData(1, Qt::Horizontal, "作业单位工作性质");
+    for(int i = 0; i < cols; i++)
+    {
+        for(int j = 0; j < 2; j++)
+        {
+            auto item = std::make_unique<QStandardItem> ();
+            model->setItem(i, j, item.release ());
+            model->item(i, j)->setTextAlignment(Qt::AlignCenter);        }
+    }
 
-    ui->operationUnitForm->setColumnCount(1);
-    ui->operationUnitForm->setRowCount(cols);
-    QStringList list;
-    list << "作业单位名称";
-    ui->operationUnitForm->setHorizontalHeaderLabels(list);
+    nameDelegate_ = std::make_unique<OperationUnitNameDelegate> ();
+
+    ui->operationUnitForm->setModel(nameModel.release());
+    ui->operationUnitForm->setItemDelegate(nameDelegate_.get());
+    ui->operationUnitForm->setColumnWidth(1, 150);
 }
 
 void RelationSetDialog::initConn()

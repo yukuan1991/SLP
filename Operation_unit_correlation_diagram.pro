@@ -50,7 +50,8 @@ SOURCES += main.cc\
     item/StorageArea.cc \
     item/TransportArea.cc \
     OperationUnit/CanvasScene.cc \
-    OperationUnit/CanvasView.cc
+    OperationUnit/CanvasView.cc \
+    OperationUnit/OperationUnitNameDelegate.cc
 
 HEADERS  += OperationUnitRelationMain.h \
     OperationUnit/Ribbon.h \
@@ -75,7 +76,8 @@ HEADERS  += OperationUnitRelationMain.h \
     item/StorageArea.h \
     item/TransportArea.h \
     OperationUnit/CanvasScene.h \
-    OperationUnit/CanvasView.h
+    OperationUnit/CanvasView.h \
+    OperationUnit/OperationUnitNameDelegate.h
 
 FORMS    += operationunitrelationmain.ui \
     OperationUnit/form.ui \
