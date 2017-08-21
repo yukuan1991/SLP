@@ -11,9 +11,9 @@ public:
     template<typename ...ARGS>
     CanvasView(ARGS && ...args) : QGraphicsView(std::forward<ARGS> (args)...) { init(); }
 
-    ~CanvasView() { qDebug() << "~canvasView()"; }
+    ~CanvasView() override;
 
-    void relationSetDlgExec() { relationSetDlg_.exec(); }
+    void relationSetDlgExec();
 private:
     void init();
 private:

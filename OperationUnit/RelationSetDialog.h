@@ -19,8 +19,9 @@ public:
     explicit RelationSetDialog(QWidget *parent = 0);
     ~RelationSetDialog();
 
-    QVariant dump();
+    QVariant dump() const;
     void load(const QVariant& data);
+
 private:
     void setTable(int rows, int cols);
     void initConn();

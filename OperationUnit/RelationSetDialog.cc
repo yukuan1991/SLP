@@ -2,6 +2,7 @@
 #include "ui_relationsetdialog.h"
 #include "OperationUnitDelegate.h"
 #include <memory>
+#include <assert.h>
 #include "OperationUnitModel.h"
 #include <QMessageBox>
 #include "OperationUnit/OperationUnitNameDelegate.h"
@@ -22,6 +23,42 @@ RelationSetDialog::RelationSetDialog(QWidget *parent) :
 RelationSetDialog::~RelationSetDialog()
 {
     delete ui;
+}
+
+QVariant RelationSetDialog::dump() const
+{
+    QVariantMap relationMap;
+    for (int col = 0; col < model_->columnCount (); col ++)
+    {
+        for (int row = col + 1; row < model_->columnCount (); col ++)
+        {
+            const auto cellData = model_->index (row, col).data (Qt::DisplayRole).toString ();
+            if (cellData.isEmpty ())
+            {
+                return {};
+            }
+
+            relationMap [QString::number (row) + " " + QString::number (col)] = cellData;
+        }
+    }
+
+    const auto model = ui->operationUnitForm->model (); assert (model);
+
+    QVariantList operationList;
+    for (auto row = 0; row < model->rowCount (); row ++)
+    {
+        QVariantMap map;
+        map ["name"] = model->data (model->index (row, 0), Qt::DisplayRole).toString ();
+        map ["type"] = model->data (model->index (row, 1), Qt::DisplayRole).toString ();
+
+        operationList.append (map);
+    }
+
+    QVariantMap totalMap;
+    totalMap ["relation"] = relationMap;
+    totalMap ["operations"] = operationList;
+
+    return totalMap;
 }
 
 void RelationSetDialog::setTable(int rows, int cols)
@@ -114,19 +151,9 @@ void RelationSetDialog::initConn()
 {
     connect(ui->buttonModify, &QPushButton::clicked, this, &RelationSetDialog::buttonModify);
 
-    connect(ui->buttonConfirm, &QPushButton::clicked, this, &RelationSetDialog::buttonConfirm);
-    connect(ui->buttonCancel, &QPushButton::clicked, this, &RelationSetDialog::buttonCancel);
+    connect(ui->buttonConfirm, &QPushButton::clicked, this, &RelationSetDialog::accept);
+    connect(ui->buttonCancel, &QPushButton::clicked, this, &RelationSetDialog::reject);
 
-}
-
-void RelationSetDialog::buttonConfirm()
-{
-    this->hide();
-}
-
-void RelationSetDialog::buttonCancel()
-{
-    this->hide();
 }
 
 void RelationSetDialog::buttonModify()
@@ -151,3 +178,4 @@ void RelationSetDialog::buttonModify()
         this->setTable(num + 2, num);
     }
 }
+

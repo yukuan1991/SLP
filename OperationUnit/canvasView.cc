@@ -16,9 +16,27 @@
 //#include "item/officeArea.h"
 //#include "item/stagingArea.h"
 //#include "item/serviceArea.h"
+#include <QJsonDocument>
 
 #include <QDebug>
 
+
+CanvasView::~CanvasView()
+{
+
+}
+
+void CanvasView::relationSetDlgExec()
+{
+    if (QDialog::Accepted != relationSetDlg_.exec ())
+    {
+	return;
+    }
+
+    const auto data = relationSetDlg_.dump ();
+
+    qDebug () << QJsonDocument::fromVariant (data).toJson ().toStdString ().data ();
+}
 
 void CanvasView::init()
 {
