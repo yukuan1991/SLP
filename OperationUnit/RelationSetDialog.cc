@@ -17,7 +17,6 @@ RelationSetDialog::RelationSetDialog(QWidget *parent) :
 
     ui->lineEdit->setValidator(new QIntValidator(1, 999, this));
     initConn();
-    setFixedSize(1000, 600);
 }
 
 RelationSetDialog::~RelationSetDialog()
@@ -99,8 +98,8 @@ void RelationSetDialog::setTable(int rows, int cols)
         for(int j = 0; j < 2; j++)
         {
             auto item = std::make_unique<QStandardItem> ();
-            model_->setItem(i, j, item.release ());
-            model_->item(i, j)->setTextAlignment(Qt::AlignCenter);
+            nameModel->setItem(i, j, item.release ());
+            nameModel->item(i, j)->setTextAlignment(Qt::AlignCenter);
         }
     }
 
