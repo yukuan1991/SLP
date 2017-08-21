@@ -11,6 +11,12 @@
 #include <QLabel>
 #include "item/AbstractLine.h"
 #include "item/LineA.h"
+#include <boost/range/adaptor/transformed.hpp>
+#include <boost/range/adaptor/filtered.hpp>
+#include <boost/range/numeric.hpp>
+
+using namespace boost;
+using namespace boost::adaptors;
 
 void CanvasScene::drawBackground(QPainter *painter, const QRectF &rect)
 {
@@ -27,34 +33,21 @@ void CanvasScene::drawBackground(QPainter *painter, const QRectF &rect)
 
 void CanvasScene::init()
 {
-    qDebug() << "canvasScene::init()";
     setBackgroundBrush(QColor (230, 230, 230));
 }
 
 qreal CanvasScene::calculateMark()
 {
-    QList<AbstractLine*> lines;
-    const auto list = items();
-    for(auto & it : list)
-    {
-        auto line = dynamic_cast<AbstractLine*>(it);
-        if(line)
-        {
-            lines.append(line);
-        }
-    }
-    auto sum = qreal {0};
-    qDebug() << "lines.size:" << lines.size();
-    for(auto & it : lines)
-    {
+    auto values = items ()
+            /// 转换成线条
+            | transformed ([] (auto && c) { return dynamic_cast<AbstractLine *>(c); })
+            /// 去掉非线条的指针
+            | filtered ([] (auto && c) { return c != null; })
+            /// 获取每个线条的分数
+            | transformed ([] (auto && c) { return QLineF (c->start (), c->stop ()).length () * c->mark () / 150; });
 
-        const auto start = it->start();
-        const auto stop = it->stop();
-        sum += it->mark() * (QLineF(start, stop).length() / 150);
-    }
-
-    qDebug() << "sum" << sum;
-    return sum;
+    /// 把分数相加求和并且返回
+    return accumulate (values, qreal {0});
 }
 
 void CanvasScene::setWorkUnitRelationshipLegend()
