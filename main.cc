@@ -5,8 +5,6 @@
 #include <base/io/file/file.hpp>
 #include <QTableView>
 #include <QStandardItemModel>
-#include <OperationUnitDelegate.h>
-#include <OperationUnitModel.h>
 #include <QStyleFactory>
 #include <QStyle>
 

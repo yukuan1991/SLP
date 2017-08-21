@@ -27,10 +27,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cc\
-        OperationUnitRelationMain.cc \
+    OperationUnitRelationMain.cc \
     OperationUnit/Ribbon.cc \
-    OperationUnitDelegate.cc \
-    OperationUnitModel.cc \
     OperationUnit/OperationUnitRelationAnalysis.cc \
     OperationUnit/OperationUnitRibbon.cc \
     OperationUnit/RelationSetDialog.cc \
@@ -51,12 +49,12 @@ SOURCES += main.cc\
     item/TransportArea.cc \
     OperationUnit/CanvasScene.cc \
     OperationUnit/CanvasView.cc \
-    OperationUnit/OperationUnitNameDelegate.cc
+    OperationUnit/OperationUnitNameDelegate.cc \
+    OperationUnit/OperationUnitDelegate.cc \
+    OperationUnit/OperationUnitModel.cc
 
 HEADERS  += OperationUnitRelationMain.h \
     OperationUnit/Ribbon.h \
-    OperationUnitDelegate.h \
-    OperationUnitModel.h \
     OperationUnit/OperationUnitRelationAnalysis.h \
     OperationUnit/OperationUnitRibbon.h \
     OperationUnit/RelationSetDialog.h \
@@ -77,7 +75,9 @@ HEADERS  += OperationUnitRelationMain.h \
     item/TransportArea.h \
     OperationUnit/CanvasScene.h \
     OperationUnit/CanvasView.h \
-    OperationUnit/OperationUnitNameDelegate.h
+    OperationUnit/OperationUnitNameDelegate.h \
+    OperationUnit/OperationUnitDelegate.h \
+    OperationUnit/OperationUnitModel.h
 
 FORMS    += operationunitrelationmain.ui \
     OperationUnit/form.ui \
