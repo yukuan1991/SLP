@@ -99,8 +99,8 @@ void RelationSetDialog::setTable(int rows, int cols)
         for(int j = 0; j < 2; j++)
         {
             auto item = std::make_unique<QStandardItem> ();
-            model->setItem(i, j, item.release ());
-            model->item(i, j)->setTextAlignment(Qt::AlignCenter);        }
+            model_->setItem(i, j, item.release ());
+            model_->item(i, j)->setTextAlignment(Qt::AlignCenter);        }
     }
 
     nameDelegate_ = std::make_unique<OperationUnitNameDelegate> ();
