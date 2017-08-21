@@ -3,8 +3,9 @@
 
 #include <QWidget>
 #include <base/lang/not_null.h>
-#include "OperationUnit/canvasView.h"
+#include "OperationUnit/CanvasView.h"
 #include "OperationUnit/OperationUnitRelationAnalysis.h"
+#include "OperationUnit/RelationSetDialog.h"
 
 namespace Ui {
 class OperationUnitRelationMain;
@@ -23,9 +24,10 @@ private:
 private:
     void newBuild();
     void relationSet();
-    not_null<canvasView*> createWindow();
+    not_null<CanvasView*> createWindow();
 private:
     Ui::OperationUnitRelationMain *ui;
+    RelationSetDialog relationSetDlg_;
 };
 
 #endif // OPERATIONUNITRELATIONMAIN_H

@@ -1,4 +1,4 @@
-﻿#include "abstractItem.h"
+﻿#include "AbstractItem.h"
 #include <QPainter>
 
 AbstractItem::AbstractItem(QGraphicsItem *parent)

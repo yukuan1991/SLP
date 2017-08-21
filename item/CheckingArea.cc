@@ -1,13 +1,13 @@
-﻿#include "checkingArea.h"
+﻿#include "CheckingArea.h"
 #include <QPainter>
 
-checkingArea::checkingArea(QGraphicsItem *parent)
+CheckingArea::CheckingArea(QGraphicsItem *parent)
     : AbstractItem (parent)
 {
 
 }
 
-void checkingArea::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void CheckingArea::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED (option);
     Q_UNUSED (widget);

@@ -1,13 +1,13 @@
-﻿#include "transportArea.h"
+﻿#include "TransportArea.h"
 #include <QPainter>
 
-transportArea::transportArea(QGraphicsItem *parent)
+TransportArea::TransportArea(QGraphicsItem *parent)
     : AbstractItem (parent)
 {
 
 }
 
-void transportArea::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void TransportArea::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);

@@ -29,53 +29,53 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cc\
         OperationUnitRelationMain.cc \
     OperationUnit/Ribbon.cc \
-    OperationUnit/canvasView.cc \
-    OperationUnit/canvasScene.cc \
     OperationUnitDelegate.cc \
     OperationUnitModel.cc \
     OperationUnit/OperationUnitRelationAnalysis.cc \
     OperationUnit/OperationUnitRibbon.cc \
     OperationUnit/RelationSetDialog.cc \
-    item/abstractItem.cc \
-    item/processingZone.cc \
-    item/assemblyArea.cc \
-    item/transportArea.cc \
-    item/storageArea.cc \
-    item/checkingArea.cc \
-    item/officeArea.cc \
-    item/stagingArea.cc \
-    item/serviceArea.cc \
     item/AbstractLine.cc \
     item/LineA.cc \
     item/LineO.cc \
     item/LineE.cc \
     item/LineI.cc \
-    item/LineX.cc
+    item/LineX.cc \
+    item/AbstractItem.cc \
+    item/AssemblyArea.cc \
+    item/CheckingArea.cc \
+    item/OfficeArea.cc \
+    item/ProcessingZone.cc \
+    item/ServiceArea.cc \
+    item/StagingArea.cc \
+    item/StorageArea.cc \
+    item/TransportArea.cc \
+    OperationUnit/CanvasScene.cc \
+    OperationUnit/CanvasView.cc
 
 HEADERS  += OperationUnitRelationMain.h \
     OperationUnit/Ribbon.h \
-    OperationUnit/canvasView.h \
-    OperationUnit/canvasScene.h \
     OperationUnitDelegate.h \
     OperationUnitModel.h \
     OperationUnit/OperationUnitRelationAnalysis.h \
     OperationUnit/OperationUnitRibbon.h \
     OperationUnit/RelationSetDialog.h \
-    item/abstractItem.h \
-    item/processingZone.h \
-    item/assemblyArea.h \
-    item/transportArea.h \
-    item/storageArea.h \
-    item/checkingArea.h \
-    item/officeArea.h \
-    item/stagingArea.h \
-    item/serviceArea.h \
     item/AbstractLine.h \
     item/LineA.h \
     item/LineO.h \
     item/LineE.h \
     item/LineI.h \
-    item/LineX.h
+    item/LineX.h \
+    item/AbstractItem.h \
+    item/AssemblyArea.h \
+    item/CheckingArea.h \
+    item/OfficeArea.h \
+    item/ProcessingZone.h \
+    item/ServiceArea.h \
+    item/StagingArea.h \
+    item/StorageArea.h \
+    item/TransportArea.h \
+    OperationUnit/CanvasScene.h \
+    OperationUnit/CanvasView.h
 
 FORMS    += operationunitrelationmain.ui \
     OperationUnit/form.ui \

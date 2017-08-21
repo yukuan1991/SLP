@@ -1,4 +1,4 @@
-﻿#include "canvasScene.h"
+﻿#include "CanvasScene.h"
 #include <QPainter>
 #include <base/lang/scope.hpp>
 #include <QDebug>
@@ -10,7 +10,7 @@
 #include <QHeaderView>
 #include <QLabel>
 
-void canvasScene::drawBackground(QPainter *painter, const QRectF &rect)
+void CanvasScene::drawBackground(QPainter *painter, const QRectF &rect)
 {
     QGraphicsScene::drawBackground(painter, rect);
     painter->setBrush(Qt::white);
@@ -20,13 +20,13 @@ void canvasScene::drawBackground(QPainter *painter, const QRectF &rect)
     painter->drawRect(effective_rect_);
 }
 
-void canvasScene::init()
+void CanvasScene::init()
 {
     qDebug() << "canvasScene::init()";
     setBackgroundBrush(QColor (230, 230, 230));
 }
 
-void canvasScene::setWorkUnitRelationshipLegend()
+void CanvasScene::setWorkUnitRelationshipLegend()
 {
     auto table = new QTableWidget(7, 3);
     table->move(2, 276);
@@ -102,7 +102,7 @@ void canvasScene::setWorkUnitRelationshipLegend()
     addWidget(table);
 }
 
-void canvasScene::setWorkUnitAreaLegend()
+void CanvasScene::setWorkUnitAreaLegend()
 {
     auto table = new QTableWidget(9, 2);
     table->move(2, 2);

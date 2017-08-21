@@ -22,6 +22,7 @@ private:
     void initConn();
     void buttonConfirm();
     void buttonCancel();
+    void buttonModify();
 private:
     OperationUnitDelegate* delegate;
     OperationUnitModel* model;

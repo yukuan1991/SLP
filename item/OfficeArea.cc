@@ -1,13 +1,13 @@
-﻿#include "officeArea.h"
+﻿#include "OfficeArea.h"
 #include <QPainter>
 
-officeArea::officeArea(QGraphicsItem *parent)
+OfficeArea::OfficeArea(QGraphicsItem *parent)
     : AbstractItem (parent)
 {
 
 }
 
-void officeArea::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void OfficeArea::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);

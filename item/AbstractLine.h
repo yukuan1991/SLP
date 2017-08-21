@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include <QGraphicsObject>
-#include "item/abstractItem.h"
+#include "item/AbstractItem.h"
 #include <base/lang/not_null.h>
 
 

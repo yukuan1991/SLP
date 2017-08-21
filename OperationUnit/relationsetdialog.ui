@@ -34,6 +34,13 @@
           <widget class="QLineEdit" name="lineEdit"/>
          </item>
          <item>
+          <widget class="QPushButton" name="buttonModify">
+           <property name="text">
+            <string>确认修改</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="horizontalSpacer_2">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
