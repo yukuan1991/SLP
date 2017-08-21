@@ -15,8 +15,8 @@ public:
     QPointF stop () const noexcept { return stop_; }
     QRectF verticalRect () const noexcept;
     qreal angle () const noexcept;
-protected:
     virtual qreal width () const noexcept = 0;
+    virtual qreal mark() const noexcept = 0;
 private:
     void resetStart () noexcept;
     void resetStop () noexcept;

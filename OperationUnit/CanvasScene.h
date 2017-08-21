@@ -20,6 +20,7 @@ protected:
     void drawBackground(QPainter* painter, const QRectF &rect) override;
 private:
     void init();
+    qreal calculateMark();
     void setWorkUnitAreaLegend();
     void setWorkUnitRelationshipLegend();
 private:

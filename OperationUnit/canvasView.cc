@@ -65,3 +65,5 @@ void CanvasView::init()
     scene ()->addItem (line6);
 
 }
+
+

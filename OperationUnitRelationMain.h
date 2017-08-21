@@ -25,9 +25,10 @@ private:
     void newBuild();
     void relationSet();
     not_null<CanvasView*> createWindow();
+    CanvasView* activeWindow();
 private:
     Ui::OperationUnitRelationMain *ui;
-    RelationSetDialog relationSetDlg_;
+//    RelationSetDialog relationSetDlg_;
 };
 
 #endif // OPERATIONUNITRELATIONMAIN_H

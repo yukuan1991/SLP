@@ -13,6 +13,7 @@ RelationSetDialog::RelationSetDialog(QWidget *parent) :
 
     ui->lineEdit->setValidator(new QIntValidator(0, 999, this));
     initConn();
+    setFixedSize(1000, 600);
 }
 
 RelationSetDialog::~RelationSetDialog()
@@ -27,6 +28,8 @@ void RelationSetDialog::setTable(int rows, int cols)
 
     ui->tableView->setModel(model);
     ui->tableView->setItemDelegate(delegate);
+    ui->tableView->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    ui->tableView->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
     for(int i = 0; i < rows; i++)
     {
@@ -81,6 +84,8 @@ void RelationSetDialog::setTable(int rows, int cols)
     ui->tableWidget->item(3, 1)->setData(Qt::DisplayRole, 1);
     ui->tableWidget->item(4, 1)->setData(Qt::DisplayRole, 0);
     ui->tableWidget->item(5, 1)->setData(Qt::DisplayRole, -1);
+
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
 
     ui->operationUnitForm->setColumnCount(1);

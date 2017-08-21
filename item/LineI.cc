@@ -12,6 +12,11 @@ qreal LineI::width() const noexcept
     return 15;
 }
 
+qreal LineI::mark() const noexcept
+{
+    return 2;
+}
+
 void LineI::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);

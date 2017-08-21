@@ -31,7 +31,12 @@ void OperationUnitRelationMain::newBuild()
 
 void OperationUnitRelationMain::relationSet()
 {
-    relationSetDlg_.exec();
+    auto w = activeWindow();
+    if(w == nullptr)
+    {
+        return;
+    }
+    w->relationSetDlgExec();
 }
 
 not_null<CanvasView*> OperationUnitRelationMain::createWindow()
@@ -43,4 +48,18 @@ not_null<CanvasView*> OperationUnitRelationMain::createWindow()
 
     w->setWindowState(Qt::WindowMaximized);
     return ptr_canvas;
+}
+
+CanvasView *OperationUnitRelationMain::activeWindow()
+{
+    if(auto subWin = ui->mdiArea->activeSubWindow())
+    {
+        auto w = dynamic_cast<CanvasView*>(subWin->widget());
+
+        return w;
+    }
+    else
+    {
+        return nullptr;
+    }
 }

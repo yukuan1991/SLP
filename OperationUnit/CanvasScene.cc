@@ -9,6 +9,8 @@
 #include <QTableWidget>
 #include <QHeaderView>
 #include <QLabel>
+#include "item/AbstractLine.h"
+#include "item/LineA.h"
 
 void CanvasScene::drawBackground(QPainter *painter, const QRectF &rect)
 {
@@ -18,12 +20,41 @@ void CanvasScene::drawBackground(QPainter *painter, const QRectF &rect)
     auto center_point = sceneRect().center();
     effective_rect_ = QRectF (center_point - QPointF (width_ / 2, height_ / 2), QSizeF (width_, height_));
     painter->drawRect(effective_rect_);
+    auto mark = calculateMark();
+    painter->drawText(effective_rect_.topRight() - QPointF(100, -15), "评估分值:");
+    painter->drawText(effective_rect_.topRight() - QPointF(60, -30), QString::number(mark));
 }
 
 void CanvasScene::init()
 {
     qDebug() << "canvasScene::init()";
     setBackgroundBrush(QColor (230, 230, 230));
+}
+
+qreal CanvasScene::calculateMark()
+{
+    QList<AbstractLine*> lines;
+    const auto list = items();
+    for(auto & it : list)
+    {
+        auto line = dynamic_cast<AbstractLine*>(it);
+        if(line)
+        {
+            lines.append(line);
+        }
+    }
+    auto sum = qreal {0};
+    qDebug() << "lines.size:" << lines.size();
+    for(auto & it : lines)
+    {
+
+        const auto start = it->start();
+        const auto stop = it->stop();
+        sum += it->mark() * (QLineF(start, stop).length() / 150);
+    }
+
+    qDebug() << "sum" << sum;
+    return sum;
 }
 
 void CanvasScene::setWorkUnitRelationshipLegend()
