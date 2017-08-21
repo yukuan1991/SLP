@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <QDialog>
+#include <memory>
 
 namespace Ui {
 class RelationSetDialog;
@@ -8,6 +9,7 @@ class RelationSetDialog;
 
 class OperationUnitDelegate;
 class OperationUnitModel;
+class OperationUnitNameDelegate;
 
 class RelationSetDialog : public QDialog
 {
@@ -17,6 +19,8 @@ public:
     explicit RelationSetDialog(QWidget *parent = 0);
     ~RelationSetDialog();
 
+    QVariant dump();
+    void load(const QVariant& data);
 private:
     void setTable(int rows, int cols);
     void initConn();
@@ -26,6 +30,7 @@ private:
 private:
     OperationUnitDelegate* delegate;
     OperationUnitModel* model;
+    std::unique_ptr<OperationUnitNameDelegate> nameDelegate_;
 private:
     Ui::RelationSetDialog *ui;
 };

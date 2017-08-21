@@ -72,8 +72,6 @@ void OperationUnitRelationAnalysis::setTable(int rows, int cols)
     ui->tableWidget->item(5, 1)->setData(Qt::DisplayRole, -1);
 
 
-
-
     ui->operationUnitForm->setColumnCount(1);
     ui->operationUnitForm->setRowCount(cols);
     QStringList list;
