@@ -38,7 +38,6 @@ void RelationSetDialog::setTable(int rows, int cols)
             }
             model->setItem(i, j, item.release ());
             model->item(i, j)->setTextAlignment(Qt::AlignCenter);
-
         }
     }
 

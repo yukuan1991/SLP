@@ -24,7 +24,7 @@ bool OperationUnitModel::setData(const QModelIndex &index, const QVariant &value
         return false;
     }
 
-    return QStandardItemModel::setData(index, value, role);
+    return QStandardItemModel::setData(mapIndex (index), value, role);
 }
 
 QVariant OperationUnitModel::data(const QModelIndex &index, int role) const
@@ -32,7 +32,7 @@ QVariant OperationUnitModel::data(const QModelIndex &index, int role) const
     const auto header = findVericalHeader(this, index);
     if ((header != "排序" and header != "综合接近程度") or role != Qt::DisplayRole)
     {
-        return QStandardItemModel::data(index, role);
+        return QStandardItemModel::data(mapIndex (index), role);
     }
 
     if (header == "综合接近程度")
@@ -107,4 +107,24 @@ QVariant OperationUnitModel::data(const QModelIndex &index, int role) const
 QString OperationUnitModel::findVericalHeader(const QStandardItemModel *model, const QModelIndex &index)
 {
     return model->headerData(index.row(), Qt::Vertical, Qt::DisplayRole).toString();
+}
+
+QModelIndex OperationUnitModel::mapIndex(const QModelIndex &index)
+{
+    if (!index.isValid ())
+    {
+        return QModelIndex ();
+    }
+
+    const auto row = index.row ();
+    const auto col = index.column ();
+
+    if (row > col)
+    {
+        return index;
+    }
+    else
+    {
+        return index.model ()->index (col, row);
+    }
 }
