@@ -1,13 +1,13 @@
-﻿#include "processingZone.h"
+﻿#include "ProcessingZone.h"
 #include "QPainter"
 
-processingZone::processingZone(QGraphicsItem *parent)
+ProcessingZone::ProcessingZone(QGraphicsItem *parent)
     : AbstractItem (parent)
 {
 
 }
 
-void processingZone::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void ProcessingZone::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     AbstractItem::paint(painter, option, widget);
 

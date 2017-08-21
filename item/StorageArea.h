@@ -1,10 +1,10 @@
 ﻿#pragma once
-#include "abstractItem.h"
+#include "AbstractItem.h"
 
-class storageArea : public AbstractItem
+class StorageArea : public AbstractItem
 {
 public:
-    storageArea(QGraphicsItem *parent = nullptr);
+    StorageArea(QGraphicsItem *parent = nullptr);
 protected:
     void paint (QPainter * painter, const QStyleOptionGraphicsItem * option,
                 QWidget * widget) override;

@@ -1,13 +1,13 @@
-﻿#include "assemblyArea.h"
+﻿#include "AssemblyArea.h"
 #include <QPainter>
 
-assemblyArea::assemblyArea(QGraphicsItem *parent)
+AssemblyArea::AssemblyArea(QGraphicsItem *parent)
     : AbstractItem (parent)
 {
 
 }
 
-void assemblyArea::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void AssemblyArea::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     AbstractItem::paint(painter, option, widget);
 

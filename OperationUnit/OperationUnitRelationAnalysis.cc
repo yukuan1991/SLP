@@ -14,23 +14,6 @@ OperationUnitRelationAnalysis::~OperationUnitRelationAnalysis()
     delete ui;
 }
 
-void OperationUnitRelationAnalysis::setOperationUnitCount()
-{
-    QInputDialog dlg;
-    dlg.setWindowTitle("设置作业单位数");
-    dlg.setLabelText("请输入作业单位数:");
-    dlg.setOkButtonText("确定");
-    dlg.setCancelButtonText("取消");
-    dlg.setInputMode(QInputDialog::IntInput);
-    dlg.setIntRange(1, 999);
-
-    if(dlg.exec() == QDialog::Accepted)
-    {
-        auto num = dlg.intValue();
-        this->setTable(num + 2, num);
-    }
-}
-
 void OperationUnitRelationAnalysis::setTable(int rows, int cols)
 {
     model = new OperationUnitModel(rows, cols, this);

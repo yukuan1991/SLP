@@ -1,13 +1,13 @@
-﻿#include "stagingArea.h"
+﻿#include "StagingArea.h"
 #include <QPainter>
 
-stagingArea::stagingArea(QGraphicsItem *parent)
+StagingArea::StagingArea(QGraphicsItem *parent)
     : AbstractItem (parent)
 {
 
 }
 
-void stagingArea::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void StagingArea::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);

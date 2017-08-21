@@ -1,18 +1,18 @@
-﻿#include "canvasView.h"
+﻿#include "CanvasView.h"
 #include <QInputDialog>
 #include <QGraphicsScene>
 #include "item/LineA.h"
 #include "item/LineI.h"
-#include "item/assemblyArea.h"
+#include "item/AssemblyArea.h"
 #include "item/LineE.h"
 #include "item/LineI.h"
 #include "item/LineO.h"
 #include "item/LineX.h"
-#include "item/processingZone.h"
+#include "item/ProcessingZone.h"
 //#include "item/assemblyArea.h"
 //#include "item/transportArea.h"
-#include "item/storageArea.h"
-#include "item/checkingArea.h"
+#include "item/StorageArea.h"
+#include "item/CheckingArea.h"
 //#include "item/officeArea.h"
 //#include "item/stagingArea.h"
 //#include "item/serviceArea.h"
@@ -20,25 +20,25 @@
 #include <QDebug>
 
 
-void canvasView::init()
+void CanvasView::init()
 {
-    scene_ = std::make_unique<canvasScene>(QRectF{0, 0, 1500, 1200});
+    scene_ = std::make_unique<CanvasScene>(QRectF{0, 0, 1500, 1200});
     auto ptr_scene = scene_.get();
     this->setScene(ptr_scene);
     setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
 
     setRenderHints (QPainter::Antialiasing);
 
-    auto item1 = new assemblyArea;
+    auto item1 = new AssemblyArea;
     item1->setPos (600, 450);
 
-    auto item2 = new storageArea;
+    auto item2 = new StorageArea;
     item2->setPos (400, 400);
 
-    auto item3 = new processingZone;
+    auto item3 = new ProcessingZone;
     item3->setPos (300, 300);
 
-    auto item4 = new checkingArea;
+    auto item4 = new CheckingArea;
     item4->setPos (300, 700);
 
     scene ()->addItem (item1);

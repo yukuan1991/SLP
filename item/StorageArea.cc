@@ -1,13 +1,13 @@
-﻿#include "storageArea.h"
+﻿#include "StorageArea.h"
 #include <QPainter>
 
-storageArea::storageArea(QGraphicsItem *parent)
+StorageArea::StorageArea(QGraphicsItem *parent)
     : AbstractItem (parent)
 {
 
 }
 
-void storageArea::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void StorageArea::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);

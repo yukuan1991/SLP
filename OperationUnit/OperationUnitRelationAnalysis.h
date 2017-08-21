@@ -12,12 +12,10 @@ class OperationUnitRelationAnalysis;
 class OperationUnitRelationAnalysis : public QWidget
 {
     Q_OBJECT
-
 public:
     explicit OperationUnitRelationAnalysis(QWidget *parent = 0);
     ~OperationUnitRelationAnalysis();
 
-    void setOperationUnitCount();
 private:
     void setTable(int rows, int cols);
 private:

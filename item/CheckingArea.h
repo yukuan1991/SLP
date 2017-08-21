@@ -1,11 +1,10 @@
 ﻿#pragma once
-#include "item/abstractItem.h"
+#include "item/AbstractItem.h"
 
-
-class assemblyArea : public AbstractItem
+class CheckingArea : public AbstractItem
 {
 public:
-    assemblyArea(QGraphicsItem *parent = nullptr);
+    CheckingArea(QGraphicsItem *parent = nullptr);
 protected:
     void paint (QPainter * painter, const QStyleOptionGraphicsItem * option,
                 QWidget * widget) override;

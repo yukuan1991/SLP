@@ -3,18 +3,18 @@
 #include <memory>
 #include <QDebug>
 
-class canvasScene : public QGraphicsScene
+class CanvasScene : public QGraphicsScene
 {
 public:
     template<typename ... ARGS>
-    canvasScene(ARGS && ...args) : QGraphicsScene(std::forward<ARGS>(args)...)
+    CanvasScene(ARGS && ...args) : QGraphicsScene(std::forward<ARGS>(args)...)
     {
         init();
         setWorkUnitAreaLegend();
         setWorkUnitRelationshipLegend();
 
     }
-    ~canvasScene() { qDebug() << "~canvasScene()"; }
+    ~CanvasScene() { qDebug() << "~canvasScene()"; }
 
 protected:
     void drawBackground(QPainter* painter, const QRectF &rect) override;

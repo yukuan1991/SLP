@@ -1,7 +1,6 @@
 ﻿#include "OperationUnitRelationMain.h"
 #include "ui_operationunitrelationmain.h"
 #include <QMdiSubWindow>
-#include "OperationUnit/RelationSetDialog.h"
 
 OperationUnitRelationMain::OperationUnitRelationMain(QWidget *parent) :
     QWidget(parent),
@@ -32,13 +31,12 @@ void OperationUnitRelationMain::newBuild()
 
 void OperationUnitRelationMain::relationSet()
 {
-    RelationSetDialog dlg;
-    dlg.exec();
+    relationSetDlg_.exec();
 }
 
-not_null<canvasView*> OperationUnitRelationMain::createWindow()
+not_null<CanvasView*> OperationUnitRelationMain::createWindow()
 {
-    auto canvas = std::make_unique<canvasView> ();
+    auto canvas = std::make_unique<CanvasView> ();
     auto ptr_canvas = canvas.get();
     canvas->setAttribute(Qt::WA_DeleteOnClose);
     auto w = ui->mdiArea->addSubWindow (canvas.release());

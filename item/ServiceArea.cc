@@ -1,13 +1,13 @@
-﻿#include "serviceArea.h"
+﻿#include "ServiceArea.h"
 #include <QPainter>
 
-serviceArea::serviceArea(QGraphicsItem *parent)
+ServiceArea::ServiceArea(QGraphicsItem *parent)
     : AbstractItem (parent)
 {
 
 }
 
-void serviceArea::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void ServiceArea::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);

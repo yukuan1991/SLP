@@ -1,11 +1,11 @@
 ﻿#pragma once
-#include "abstractItem.h"
+#include "AbstractItem.h"
 
 
-class serviceArea : public AbstractItem
+class ServiceArea : public AbstractItem
 {
 public:
-    serviceArea(QGraphicsItem *parent = nullptr);
+    ServiceArea(QGraphicsItem *parent = nullptr);
 protected:
     void paint (QPainter * painter, const QStyleOptionGraphicsItem * option,
                 QWidget * widget) override;

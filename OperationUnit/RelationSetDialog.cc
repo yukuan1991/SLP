@@ -3,6 +3,7 @@
 #include "OperationUnitDelegate.h"
 #include <memory>
 #include "OperationUnitModel.h"
+#include <QMessageBox>
 
 RelationSetDialog::RelationSetDialog(QWidget *parent) :
     QDialog(parent),
@@ -91,9 +92,10 @@ void RelationSetDialog::setTable(int rows, int cols)
 
 void RelationSetDialog::initConn()
 {
-    connect(ui->lineEdit, &QLineEdit::textChanged,
-            [this] (const QString& text) { auto num = text.toInt();
-        this->setTable(num + 2, num); });
+    connect(ui->buttonModify, &QPushButton::clicked, this, &RelationSetDialog::buttonModify);
+//    connect(ui->lineEdit, &QLineEdit::textChanged,
+//            [this] (const QString& text) { auto num = text.toInt();
+//        this->setTable(num + 2, num); });
 
     connect(ui->buttonConfirm, &QPushButton::clicked, this, &RelationSetDialog::buttonConfirm);
     connect(ui->buttonCancel, &QPushButton::clicked, this, &RelationSetDialog::buttonCancel);
@@ -108,4 +110,25 @@ void RelationSetDialog::buttonConfirm()
 void RelationSetDialog::buttonCancel()
 {
     this->hide();
+}
+
+void RelationSetDialog::buttonModify()
+{
+    auto ret = QMessageBox::question(this, "设置", "是否修改当前作业单位数？", "是", "否");
+    const auto yes = 0;
+    const auto no = 1;
+    if(ret == yes)
+    {
+        const auto text = ui->lineEdit->text();
+        bool isOk = false;
+        const auto num = text.toInt(&isOk);
+        if(isOk)
+        {
+            this->setTable(num + 2, num);
+        }
+    }
+    else if(ret == no)
+    {
+        return;
+    }
 }

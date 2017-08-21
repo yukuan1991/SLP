@@ -1,10 +1,11 @@
 ﻿#pragma once
-#include "item/abstractItem.h"
+#include "item/AbstractItem.h"
 
-class stagingArea : public AbstractItem
+
+class ProcessingZone : public AbstractItem
 {
 public:
-    stagingArea(QGraphicsItem *parent = nullptr);
+    ProcessingZone(QGraphicsItem *parent = nullptr);
 protected:
     void paint (QPainter * painter, const QStyleOptionGraphicsItem * option,
                 QWidget * widget) override;
