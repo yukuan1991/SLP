@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <QDialog>
+#include <memory>
 
 namespace Ui {
 class RelationSetDialog;
@@ -24,8 +25,8 @@ private:
     void buttonCancel();
     void buttonModify();
 private:
-    OperationUnitDelegate* delegate;
-    OperationUnitModel* model;
+    std::unique_ptr<OperationUnitDelegate> delegate_;
+    std::unique_ptr<OperationUnitModel> model_;
 private:
     Ui::RelationSetDialog *ui;
 };

@@ -5,13 +5,15 @@
 #include "OperationUnitModel.h"
 #include <QMessageBox>
 
+using std::make_unique;
+
 RelationSetDialog::RelationSetDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::RelationSetDialog)
 {
     ui->setupUi(this);
 
-    ui->lineEdit->setValidator(new QIntValidator(0, 999, this));
+    ui->lineEdit->setValidator(new QIntValidator(1, 999, this));
     initConn();
     setFixedSize(1000, 600);
 }
@@ -23,11 +25,11 @@ RelationSetDialog::~RelationSetDialog()
 
 void RelationSetDialog::setTable(int rows, int cols)
 {
-    model = new OperationUnitModel(rows, cols, this);
-    delegate = new OperationUnitDelegate(this);
+    model_ = make_unique<OperationUnitModel> (rows, cols, this);
+    delegate_ = make_unique<OperationUnitDelegate> (this);
 
-    ui->tableView->setModel(model);
-    ui->tableView->setItemDelegate(delegate);
+    ui->tableView->setModel(model_.get ());
+    ui->tableView->setItemDelegate(delegate_.get ());
     ui->tableView->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     ui->tableView->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
@@ -40,20 +42,20 @@ void RelationSetDialog::setTable(int rows, int cols)
             {
                 item->setBackground (QColor (230, 230, 230));
             }
-            model->setItem(i, j, item.release ());
-            model->item(i, j)->setTextAlignment(Qt::AlignCenter);
+            model_->setItem(i, j, item.release ());
+            model_->item(i, j)->setTextAlignment(Qt::AlignCenter);
         }
     }
 
     for(int row = 0; row < cols; row++)
     {
         int col = row;
-        model->item(row, col)->setEditable(false);
-        model->item(row, col)->setBackground(Qt::gray);
+        model_->item(row, col)->setEditable(false);
+        model_->item(row, col)->setBackground(Qt::gray);
     }
 
-    model->setHeaderData(rows - 2, Qt::Vertical, "综合接近程度");
-    model->setHeaderData(rows - 1, Qt::Vertical, "排序");
+    model_->setHeaderData(rows - 2, Qt::Vertical, "综合接近程度");
+    model_->setHeaderData(rows - 1, Qt::Vertical, "排序");
     ui->tableView->verticalHeader()->setDefaultAlignment(Qt::AlignCenter);
 
 
@@ -98,9 +100,6 @@ void RelationSetDialog::setTable(int rows, int cols)
 void RelationSetDialog::initConn()
 {
     connect(ui->buttonModify, &QPushButton::clicked, this, &RelationSetDialog::buttonModify);
-//    connect(ui->lineEdit, &QLineEdit::textChanged,
-//            [this] (const QString& text) { auto num = text.toInt();
-//        this->setTable(num + 2, num); });
 
     connect(ui->buttonConfirm, &QPushButton::clicked, this, &RelationSetDialog::buttonConfirm);
     connect(ui->buttonCancel, &QPushButton::clicked, this, &RelationSetDialog::buttonCancel);
@@ -119,9 +118,11 @@ void RelationSetDialog::buttonCancel()
 
 void RelationSetDialog::buttonModify()
 {
+    /// 很不优雅 QMessageBox::question
     auto ret = QMessageBox::question(this, "设置", "是否修改当前作业单位数？", "是", "否");
-    const auto yes = 0;
-    const auto no = 1;
+    constexpr auto yes = 0;
+    constexpr auto no = 1;
+
     if(ret == yes)
     {
         const auto text = ui->lineEdit->text();
