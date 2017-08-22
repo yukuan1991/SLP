@@ -1,4 +1,4 @@
-#ifndef CANVASWIDGET_H
+﻿#ifndef CANVASWIDGET_H
 #define CANVASWIDGET_H
 
 #include <QWidget>
@@ -15,6 +15,7 @@ public:
     explicit CanvasWidget(QWidget *parent = 0);
     ~CanvasWidget();
 
+    void relationSetDlgExec();
 private:
     Ui::CanvasWidget *ui;
 };

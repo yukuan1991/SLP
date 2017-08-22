@@ -55,7 +55,24 @@ void CanvasView::init()
 
 void CanvasView::generateChart(const QVariantMap & data)
 {
-    scene ()->clear ();
+	if(scene_->items().size() > 0)
+	{
+		auto itemRng = scene_->items()
+		        | transformed([] (auto && c) { return dynamic_cast<AbstractItem *>(c); })
+		        | filtered([] (auto && c) { return c != nullptr; });
+		for(auto && item : itemRng)
+		{
+			item->deleteLater();
+		}
+		auto lineRng = scene_->items()
+		        | transformed([] (auto && c) { return dynamic_cast<AbstractLine *>(c); })
+		        | filtered([] (auto && c) { return c != nullptr; });
+		for(auto && line : lineRng)
+		{
+			line->deleteLater();
+		}
+	}
+
     const auto list = data ["operations"].toList ();
     const auto lines = data ["relation"].toList ();
 
@@ -72,13 +89,13 @@ void CanvasView::generateChart(const QVariantMap & data)
 	makeLine (items[stringlist.at (0).toInt ()], items[stringlist.at (1).toInt ()], stringlist.at (2).toStdString ().at (0));
 	}
 
-	auto op = scene_->items ()
+	auto op = this->items ()
 	        | transformed ([] (auto && c) { return dynamic_cast<AbstractItem *>(c); })
 	        | filtered ([] (auto && c) { return c != null; });
 	auto pos = scene_->effectiveRect().center();
 	const auto offset = QPointF(60, 60);
 	auto i = 0;
-	for(auto && it : op)
+	for(auto it : op)
 	{
 		it->setPos(pos + (offset) * i);
 		i++;
