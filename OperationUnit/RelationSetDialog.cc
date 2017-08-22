@@ -156,9 +156,21 @@ void RelationSetDialog::initConn()
 {
     connect(ui->buttonModify, &QPushButton::clicked, this, &RelationSetDialog::buttonModify);
 
-    connect(ui->buttonConfirm, &QPushButton::clicked, this, &RelationSetDialog::accept);
+    connect(ui->buttonConfirm, &QPushButton::clicked, this, &RelationSetDialog::buttonConfirm);
     connect(ui->buttonCancel, &QPushButton::clicked, this, &RelationSetDialog::reject);
 
+}
+
+void RelationSetDialog::buttonConfirm()
+{
+    if(!checkDataPadding())
+    {
+        QMessageBox::information(this, "提示", "表中尚有数据未填充!");
+    }
+    else
+    {
+        accept();
+    }
 }
 
 void RelationSetDialog::buttonModify()
@@ -182,5 +194,48 @@ void RelationSetDialog::buttonModify()
     {
         this->setTable(num + 2, num);
     }
+}
+
+bool RelationSetDialog::checkDataPadding()
+{
+    if(model_ == null)
+    {
+        return false;
+    }
+
+    ///判断综合关系表数据是否填充满
+    const auto row = model_->rowCount();
+    const auto col = model_->columnCount();
+
+    for(int i = 0; i < row; i++)
+    {
+        for(int j = 0; j < col; j++)
+        {
+            if(i != j)
+            {
+                if(model_->data(model_->index(i, j)).toString().isEmpty())
+                {
+                    return false;
+                }
+            }
+        }
+    }
+
+    ///判断作业单位信息表数据是否填充满
+    const auto nameModel = ui->operationUnitForm->model();
+    const auto nameRow = nameModel->rowCount();
+    const auto nameCol = nameModel->columnCount();
+    for(int i = 0; i < nameRow; i++)
+    {
+        for(int j = 0; j < nameCol; j++)
+        {
+            if(nameModel->data(nameModel->index(i, j)).toString().isEmpty())
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
 }
 

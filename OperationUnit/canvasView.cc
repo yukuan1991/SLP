@@ -9,17 +9,19 @@
 #include "item/LineO.h"
 #include "item/LineX.h"
 #include "item/ProcessingZone.h"
-//#include "item/assemblyArea.h"
-//#include "item/transportArea.h"
+#include "item/AssemblyArea.h"
+#include "item/TransportArea.h"
 #include "item/StorageArea.h"
 #include "item/CheckingArea.h"
-//#include "item/officeArea.h"
-//#include "item/stagingArea.h"
-//#include "item/serviceArea.h"
+#include "item/OfficeArea.h"
+#include "item/StagingArea.h"
+#include "item/ServiceArea.h"
 #include <QJsonDocument>
 
 #include <QDebug>
 #include <boost/range/adaptor/indexed.hpp>
+#include <boost/range/adaptor/filtered.hpp>
+#include <boost/range/adaptor/transformed.hpp>
 
 using namespace boost::adaptors;
 
@@ -33,8 +35,8 @@ void CanvasView::relationSetDlgExec()
 {
     if (QDialog::Accepted != relationSetDlg_.exec ())
     {
-	return;
-    }
+		return;
+	}
 
     const auto data = relationSetDlg_.dump ();
 
@@ -49,42 +51,6 @@ void CanvasView::init()
     setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
 
     setRenderHints (QPainter::Antialiasing);
-
-    auto item1 = new AssemblyArea;
-    item1->setPos (600, 450);
-
-    auto item2 = new StorageArea;
-    item2->setPos (400, 400);
-
-    auto item3 = new ProcessingZone;
-    item3->setPos (300, 300);
-
-    auto item4 = new CheckingArea;
-    item4->setPos (300, 700);
-
-    scene ()->addItem (item1);
-    scene ()->addItem (item2);
-    scene ()->addItem (item3);
-    scene ()->addItem (item4);
-
-
-
-
-    auto line1 = new LineE (item1, item2);
-    auto line2 = new LineA (item1, item3);
-    auto line3 = new LineI (item2, item3);
-    auto line4 = new LineO (item1, item4);
-    auto line5 = new LineA (item2, item4);
-    auto line6 = new LineX (item3, item4);
-
-
-    scene ()->addItem (line1);
-    scene ()->addItem (line2);
-    scene ()->addItem (line3);
-    scene ()->addItem (line4);
-    scene ()->addItem (line5);
-    scene ()->addItem (line6);
-
 }
 
 void CanvasView::generateChart(const QVariantMap & data)
@@ -104,8 +70,19 @@ void CanvasView::generateChart(const QVariantMap & data)
 	const auto stringlist = it.toString ().split (" ");
 	assert (stringlist.size () == 3);
 	makeLine (items[stringlist.at (0).toInt ()], items[stringlist.at (1).toInt ()], stringlist.at (2).toStdString ().at (0));
-    }
+	}
 
+	auto op = scene_->items ()
+	        | transformed ([] (auto && c) { return dynamic_cast<AbstractItem *>(c); })
+	        | filtered ([] (auto && c) { return c != null; });
+	auto pos = scene_->effectiveRect().center();
+	const auto offset = QPointF(60, 60);
+	auto i = 0;
+	for(auto && it : op)
+	{
+		it->setPos(pos + (offset) * i);
+		i++;
+	}
 }
 
 AbstractItem *CanvasView::makeItem(const QString &type)
@@ -113,7 +90,7 @@ AbstractItem *CanvasView::makeItem(const QString &type)
     AbstractItem * item = null;
     if (type == "成型或处理加工区")
     {
-	item = new AssemblyArea;
+	item = new ProcessingZone;
     }
     else if (type == "装配区")
     {
@@ -121,32 +98,32 @@ AbstractItem *CanvasView::makeItem(const QString &type)
     }
     else if (type == "与运输有关的作业区域")
     {
-	item = new AssemblyArea;
+	item = new TransportArea;
     }
     else if (type == "储存作业区域")
     {
-	item = new AssemblyArea;
+	item = new StorageArea;
     }
     else if (type == "停放或暂存区域")
     {
-	item = new AssemblyArea;
+	item = new StagingArea;
     }
     else if (type == "检验、测试区域")
     {
-	item = new AssemblyArea;
+	item = new CheckingArea;
     }
     else if ("服务及辅助作业区域" == type)
     {
-	item = new AssemblyArea;
+	item = new ServiceArea;
     }
     else if ("办公室规划面积" == type)
     {
-	item = new AssemblyArea;
+	item = new OfficeArea;
     }
-    else
-    {
-	assert (false);
-    }
+	else
+	{
+		assert (false);
+	}
     scene ()->addItem (item);
 
     return item;

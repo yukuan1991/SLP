@@ -25,7 +25,9 @@ public:
 private:
     void setTable(int rows, int cols);
     void initConn();
+    void buttonConfirm();
     void buttonModify();
+    bool checkDataPadding();
 private:
     std::unique_ptr<OperationUnitDelegate> delegate_;
     std::unique_ptr<OperationUnitModel> model_;

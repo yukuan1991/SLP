@@ -15,7 +15,7 @@ public:
 
     }
     ~CanvasScene() { qDebug() << "~canvasScene()"; }
-
+    QRectF effectiveRect() const { return effective_rect_; }
 protected:
     void drawBackground(QPainter* painter, const QRectF &rect) override;
 private:
