@@ -43,6 +43,11 @@ void CanvasView::relationSetDlgExec()
 	generateChart (data.toMap ());
 }
 
+QVariant CanvasView::dump() const
+{
+	return relationSetDlg_.dump();
+}
+
 void CanvasView::init()
 {
     scene_ = std::make_unique<CanvasScene>(QRectF{0, 0, 1500, 1200});

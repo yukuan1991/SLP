@@ -22,6 +22,7 @@ public:
 
     void relationSetDlgExec();
     qreal calculateMark() { return scene_->calculateMark(); }
+    QVariant dump() const;
 private:
     void init();
     void generateChart (const QVariantMap &data);

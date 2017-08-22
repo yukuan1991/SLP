@@ -26,3 +26,8 @@ void CanvasWidget::relationSetDlgExec()
 {
     ui->canvasView->relationSetDlgExec();
 }
+
+QVariant CanvasWidget::dump() const
+{
+    return ui->canvasView->dump();
+}

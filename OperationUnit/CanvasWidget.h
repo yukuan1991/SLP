@@ -16,6 +16,7 @@ public:
     ~CanvasWidget();
 
     void relationSetDlgExec();
+    QVariant dump() const;
 private:
     Ui::CanvasWidget *ui;
 };
