@@ -25,8 +25,6 @@ public:
 private:
     void setTable(int rows, int cols);
     void initConn();
-    void buttonConfirm();
-    void buttonCancel();
     void buttonModify();
 private:
     std::unique_ptr<OperationUnitDelegate> delegate_;

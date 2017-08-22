@@ -27,10 +27,15 @@ RelationSetDialog::~RelationSetDialog()
 
 QVariant RelationSetDialog::dump() const
 {
-    QVariantMap relationMap;
+    if (model_ == null)
+    {
+        return {};
+    }
+    QVariantList relation;
+
     for (int col = 0; col < model_->columnCount (); col ++)
     {
-        for (int row = col + 1; row < model_->columnCount (); col ++)
+        for (int row = col + 1; row < model_->columnCount (); row ++)
         {
             const auto cellData = model_->index (row, col).data (Qt::DisplayRole).toString ();
             if (cellData.isEmpty ())
@@ -38,7 +43,7 @@ QVariant RelationSetDialog::dump() const
                 return {};
             }
 
-            relationMap [QString::number (row) + " " + QString::number (col)] = cellData;
+            relation.push_back (QString::number (row) + " " + QString::number (col) + " " + cellData);
         }
     }
 
@@ -55,7 +60,7 @@ QVariant RelationSetDialog::dump() const
     }
 
     QVariantMap totalMap;
-    totalMap ["relation"] = relationMap;
+    totalMap ["relation"] = relation;
     totalMap ["operations"] = operationList;
 
     return totalMap;
