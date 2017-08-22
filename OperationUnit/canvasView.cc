@@ -95,11 +95,11 @@ void CanvasView::generateChart(const QVariantMap & data)
 	auto pos = scene_->effectiveRect().center();
 	const auto offset = QPointF(60, 60);
 	auto i = 0;
-	for(auto it : op)
-	{
-		it->setPos(pos + (offset) * i);
-		i++;
-	}
+//	for(auto it : op)
+//	{
+//		it->setPos(pos + (offset) * i);
+//		i++;
+//	}
 }
 
 AbstractItem *CanvasView::makeItem(const QString &type)
