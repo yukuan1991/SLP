@@ -16,11 +16,11 @@ public:
     }
     ~CanvasScene() { qDebug() << "~canvasScene()"; }
     QRectF effectiveRect() const { return effective_rect_; }
+    qreal calculateMark();
 protected:
     void drawBackground(QPainter* painter, const QRectF &rect) override;
 private:
     void init();
-    qreal calculateMark();
     void setWorkUnitAreaLegend();
     void setWorkUnitRelationshipLegend();
 private:

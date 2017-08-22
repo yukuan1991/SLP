@@ -1,4 +1,4 @@
-#ifndef MARKWIDGET_H
+﻿#ifndef MARKWIDGET_H
 #define MARKWIDGET_H
 
 #include <QWidget>
@@ -15,6 +15,7 @@ public:
     explicit MarkWidget(QWidget *parent = 0);
     ~MarkWidget();
 
+    void setMark(qreal mark);
 private:
     Ui::MarkWidget *ui;
 };

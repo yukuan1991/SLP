@@ -11,6 +11,9 @@ class AbstractLine;
 
 class CanvasView : public QGraphicsView
 {
+    Q_OBJECT
+signals:
+    void itemPositionChanged();
 public:
     template<typename ...ARGS>
     CanvasView(ARGS && ...args) : QGraphicsView(std::forward<ARGS> (args)...) { init(); }
@@ -18,6 +21,7 @@ public:
     ~CanvasView() override;
 
     void relationSetDlgExec();
+    qreal calculateMark() { return scene_->calculateMark(); }
 private:
     void init();
     void generateChart (const QVariantMap &data);

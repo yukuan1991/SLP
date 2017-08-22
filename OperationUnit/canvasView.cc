@@ -40,7 +40,7 @@ void CanvasView::relationSetDlgExec()
 
     const auto data = relationSetDlg_.dump ();
 
-    generateChart (data.toMap ());
+	generateChart (data.toMap ());
 }
 
 void CanvasView::init()
@@ -124,6 +124,10 @@ AbstractItem *CanvasView::makeItem(const QString &type)
 	{
 		assert (false);
 	}
+	connect(item, &AbstractItem::xChanged, this, &CanvasView::itemPositionChanged);
+	connect(item, &AbstractItem::xChanged, [] { qDebug() << "xChanged"; });
+	connect(item, &AbstractItem::yChanged, this, &CanvasView::itemPositionChanged);
+
     scene ()->addItem (item);
 
     return item;
